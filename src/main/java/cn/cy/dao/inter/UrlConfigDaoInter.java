@@ -13,6 +13,6 @@ import java.util.Map;
 @Mapper
 public interface UrlConfigDaoInter {
 
-    @Select("select * from cy_url_config where ptid=#{id} and kind='B'")
+    @Select("select * from cy_url_config where ptid=#{id} and kind='B' ORDER BY orderby")
     List<Map<String, String>> urlNavList(@Param("id") String id);
 }

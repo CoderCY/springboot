@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>首页</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -16,27 +16,40 @@
         });
     </script>
     <script src="../js/weui/jquery-weui.js" type="text/javascript"></script>
+    <script src="../js/vue/vue.min.js" type="text/javascript"></script>
+    <script src="../icon/iconfont.js" type="text/javascript"></script>
     <script src="../js/main.js" type="text/javascript"></script>
     <script src="../js/home/home.js" type="text/javascript"></script>
+
 </head>
 <body ontouchstart>
     <div class="weui-tab" id="tabhome">
         <div class="weui-tab__bd">
-            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-                <iframe class="weui-tab__frame" src="http://jqweui.com/dist/demos/action-sheet.html"
-                        frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
-                        allowtransparency="yes"></iframe>
-            </div>
+            <template v-for="nav in navs">
+                <div v-bind:id="'tab' + nav.id" class="weui-tab__bd-item">
+                    <iframe class="weui-tab__frame" v-bind:src="nav.url"
+                            frameborder="no" border="0" marginwidth="0" marginheight="0"
+                            scrolling="no" allowtransparency="yes"></iframe>
+                </div>
+            </template>
         </div>
 
         <div class="weui-tabbar">
-            <a href="#tab" class="weui-tabbar__item weui-bar__item--on">
-                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
-                <div class="weui-tabbar__icon">
-                    <img src="./images/icon_nav_button.png" alt="">
-                </div>
-                <p class="weui-tabbar__label">微信</p>
-            </a>
+            <template v-for="nav in navs">
+                <a v-bind:href="'#tab' + nav.id" class="weui-tabbar__item" v-bind:name="nav.type">
+                    <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
+                    <div class="weui-tabbar__icon" v-if="nav.type === 'I' || nav.type === 'IN'">
+
+                        <svg class="icon" aria-hidden="true">
+                            <use v-bind:xlink:href="nav.icon"></use>
+                        </svg>
+                    </div>
+                    <p class="weui-tabbar__label" v-bind:name="nav.type"
+                       v-if="nav.type === 'N' || nav.type === 'IN'">
+                        {{nav.name}}
+                    </p>
+                </a>
+            </template>
         </div>
     </div>
 </body>

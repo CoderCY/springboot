@@ -6,3 +6,17 @@ body, html {
     width: 100%;
     height: 100%;
 }
+.icon {
+    width: 27px;
+    height: 27px;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+.weui-tabbar__item[name=I]{
+    padding: 10px 0 13px 0;
+}
+.weui-tabbar__label[name=N]{
+    font-size: 15px;
+    padding: 5px 0;
+}

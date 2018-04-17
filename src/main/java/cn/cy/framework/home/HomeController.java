@@ -3,21 +3,15 @@ package cn.cy.framework.home;
 import cn.cy.dao.inter.UrlConfigDaoInter;
 import cn.cy.service.inter.BasicConfigServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Administrator on 2018\4\16 0016.
  */
-@Controller
-@RequestMapping("/home")
+@RestController
 public class HomeController {
 
     @Autowired
@@ -26,15 +20,9 @@ public class HomeController {
     @Autowired
     private UrlConfigDaoInter urlConfigDaoInter;
 
-    @RequestMapping(value = "/{id}/{key}/index", method = RequestMethod.GET)
-    public String index(@PathVariable("id") String id, @PathVariable("key") String key, Model model){
-        String view = "index";
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("id", id);
-        map.put("key", key);
-        view = basicConfigServiceImpl.getValue(map);
+    @RequestMapping(value = "/{id}/home", method = RequestMethod.GET)
+    public Object index(@PathVariable("id") String id){
         List<Map<String, String>> navList = urlConfigDaoInter.urlNavList(id);
-        model.addAttribute("navList", navList);
-        return view;
+        return navList;
     }
 }
