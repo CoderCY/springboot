@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<script type="text/javascript" th:src="@{/js/jquery/jquery.js}"></script>
+<script th:inline="javascript">
+    var path = /*[[${#httpServletRequest.getContextPath()}]]*/ 'localhost:8080';
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://" + path + "/ws?uid=1L");
+    } else if ('MozWebSocket' in window) {
+        websocket = new MozWebSocket("ws://" + path + "/ws1L");
+    } else {
+        websocket = new SockJS("http://" + path + "/ws/sockjs1L");
+    }
+    websocket.onopen = function(event) {
+        console.log("WebSocket:已连接");
+        console.log(event);
+    };
+    websocket.onmessage = function(event) {
+        var data=JSON.parse(event.data);
+        console.log("WebSocket:收到一条消息",data);
+        var textCss=data.from==-1?"sfmsg_text":"fmsg_text";
+        $("#content").append("<div class='fmsg'><label class='name'>"+data.fromName+"&nbsp;"+data.date+"</label><div class='"+textCss+"'>"+data.text+"</div></div>");
+        scrollToBottom();
+    };
+    websocket.onerror = function(event) {
+        console.log("WebSocket:发生错误 ");
+        console.log(event);
+    };
+    websocket.onclose = function(event) {
+        console.log("WebSocket:已关闭");
+        console.log(event);
+    }
+    $(window).unload(function(){
+        socket.close();
+    });
+</script>
+</head>
+<body>
+    talk页面
+</body>
+</html>
