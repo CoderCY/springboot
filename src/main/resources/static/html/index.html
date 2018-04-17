@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../css/weui/weui.min.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/weui/jquery-weui.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css"/>
+    <script src="../js/jquery/jquery-2.1.4.js" type="text/javascript"></script>
+    <script src="../js/weui/fastclick.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="../js/weui/jquery-weui.js" type="text/javascript"></script>
+    <script src="../js/main.js" type="text/javascript"></script>
+    <script src="../js/home/home.js" type="text/javascript"></script>
+</head>
+<body ontouchstart>
+    <div class="weui-tab" id="tabhome">
+        <div class="weui-tab__bd">
+            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <iframe class="weui-tab__frame" src="http://jqweui.com/dist/demos/action-sheet.html"
+                        frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                        allowtransparency="yes"></iframe>
+            </div>
+        </div>
+
+        <div class="weui-tabbar">
+            <a href="#tab" class="weui-tabbar__item weui-bar__item--on">
+                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+                <div class="weui-tabbar__icon">
+                    <img src="./images/icon_nav_button.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">微信</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
